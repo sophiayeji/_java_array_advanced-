@@ -9,6 +9,5 @@ public interface BoardService {
 	public void addBoard(BoardDTO boardDTO);
 	public List<BoardDTO> getBoardList();
 	public BoardDTO getBoardDetail(long boardId, boolean isUpdateReadCnt);
-	public boolean modifyBoard(BoardDTO boardDTO);
-		
+	public boolean modifyBoard(BoardDTO boardDTO);		
 }

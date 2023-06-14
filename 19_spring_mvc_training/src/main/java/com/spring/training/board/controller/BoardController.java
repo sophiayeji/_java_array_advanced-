@@ -102,8 +102,7 @@ public class BoardController {
 			jsScript += " history.go(-1);";
 			jsScript += "</script>";
 		}
-		
-				
+						
 		return jsScript;		
 	}
 	
