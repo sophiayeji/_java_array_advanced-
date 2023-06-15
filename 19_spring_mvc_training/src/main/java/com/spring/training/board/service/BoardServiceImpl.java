@@ -57,18 +57,18 @@ public class BoardServiceImpl implements BoardService {
 	private BCryptPasswordEncoder bCryptPasswordEncoder;
 	
 	@Override
-	public void addBoard(BoardDTO boardDTO) {
+	public void addBoard(BoardDTO boardDTO) throws Exception{
 		boardDTO.setPasswd(bCryptPasswordEncoder.encode(boardDTO.getPasswd()));
 		boardDAO.insertBoard(boardDTO);
 	}
 
 	@Override
-	public List<BoardDTO> getBoardList() {
+	public List<BoardDTO> getBoardList() throws Exception{
 		return boardDAO.selectListBoard();		
 	}
 
 	@Override
-	public BoardDTO getBoardDetail(long boardId, boolean isUpdateReadCnt) {
+	public BoardDTO getBoardDetail(long boardId, boolean isUpdateReadCnt) throws Exception {
 		
 		if(isUpdateReadCnt) { 
 			boardDAO.updateReadCnt(boardId);//조회수 업데이트 쿼리
@@ -81,8 +81,32 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public boolean modifyBoard(BoardDTO boardDTO) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean modifyBoard(BoardDTO boardDTO) throws Exception {
+		
+		boolean isUpdate = false;
+		
+		String rawPassword = boardDTO.getPasswd();
+		String encodedPassword = boardDAO.SelectOnePasswd(boardDTO.getBoardId());
+				
+											// 입력한 패스워드(dto),Selelct된 passwd (dao)
+		if(bCryptPasswordEncoder.matches(rawPassword, encodedPassword)) {	// 비밀번호가 맞으면
+			boardDAO.updateBoard(boardDTO);								// 업데이트쿼리
+			isUpdate = true;	
+		}
+		
+		return isUpdate;
+	}
+
+	@Override
+	public boolean removeBoard(BoardDTO boardDTO) throws Exception {
+		
+		boolean isDelete = false;
+		
+		if(bCryptPasswordEncoder.matches(boardDTO.getPasswd(),boardDAO.SelectOnePasswd(boardDTO.getBoardId()))) {				
+			boardDAO.deleteBoard(boardDTO.getBoardId());
+			isDelete=true;
+		}
+		
+		return isDelete;
 	}
 }

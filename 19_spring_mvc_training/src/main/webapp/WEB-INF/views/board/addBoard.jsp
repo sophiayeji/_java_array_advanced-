@@ -1,4 +1,5 @@
-<%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="contextPath" value="${pageContext.request.contextPath }"/>
 
@@ -40,7 +41,7 @@
 					<td colspan="2">
 						<input type="submit" value="글쓰기" />
 						<input type="reset"  value="다시작성" />
-						<input type="button" onclick="" value="목록보기">
+						<input type="button" onclick="location.href='${contextPath}/board/boardList" value="목록보기">
 					</td>
 				</tr>
 			</table>

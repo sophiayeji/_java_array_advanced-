@@ -11,11 +11,7 @@
 <body> 
 
 	<h3>게시글 조회</h3>
-	<table border="1">
-		<tr>
-			<td>글번호</td>
-			<td>${boardDTO.boardId }</td>
-		</tr>
+	<table border="1">		
 		<tr>
 			<td>조회수</td>
 			<td>${boardDTO.readCnt }</td>

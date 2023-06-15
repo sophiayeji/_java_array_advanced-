@@ -7,7 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>modify board</title>
-<scirpt src ="${contextPath }/resources/ckeditor/ckeditor.js" ></scirpt>
+<script src ="${contextPath }/resources/ckeditor/ckeditor.js" ></script>
 
 </head>
 <body>
@@ -35,7 +35,7 @@
 				<td>글내용</td>
 				<td>
 					<textarea rows="10" cols="30" name="content"> ${boardDTO.content}</textarea>
-					<scirpt>CKEDITOR.replace("content");</scirpt>
+					<script>CKEDITOR.replace("content");</script>
 				</td>
 			</tr>
 			<tr>
